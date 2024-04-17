@@ -1,0 +1,33 @@
+kind: SpinApp
+apiVersion: core.spinoperator.dev/v1alpha1
+metadata:
+  name: variable-explorer
+spec:
+  replicas: 1
+  image: ttl.sh/variable-explorer:1h
+  executor: containerd-shim-spin
+  variables:
+    - name: pod_name
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: pod_namespace
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+    - name: pod_uid
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.uid
+    - name: pod_ip
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+    - name: node_name
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: host_ip
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
