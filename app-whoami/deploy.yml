@@ -4,7 +4,7 @@ metadata:
   name: variable-explorer
 spec:
   replicas: 1
-  image: ttl.sh/variable-explorer:1h
+  image: index.docker.io/sautax/variable-explorer:v1
   executor: containerd-shim-spin
   variables:
     - name: pod_name
