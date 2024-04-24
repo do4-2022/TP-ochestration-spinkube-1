@@ -83,3 +83,7 @@ resource "helm_release" "keda" {
   repository       = "https://kedacore.github.io/charts"
   chart            = "keda"
 }
+
+resource "kubernetes_manifest" "spin_app_ingress" {
+  manifest = yamldecode(file("${path.module}/kube/network/ingress.yaml"))
+}
