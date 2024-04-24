@@ -76,6 +76,10 @@ resource "kubectl_manifest" "spin_operator_shrim_executor" {
   yaml_body = data.http.spin_operator_shrim_executor.response_body
 }
 
+resource "kubernetes_manifest" "spin_app_ingress" {
+  manifest = yamldecode(file("${path.module}/kube/network/ingress.yaml"))
+}
+
 resource "helm_release" "keda" {
   name             = "keda"
   namespace        = "keda"
@@ -84,6 +88,10 @@ resource "helm_release" "keda" {
   chart            = "keda"
 }
 
-resource "kubernetes_manifest" "spin_app_ingress" {
-  manifest = yamldecode(file("${path.module}/kube/network/ingress.yaml"))
+resource "kubernetes_manifest" "whoami_app" {
+  manifest = yamldecode(file("${path.module}/kube/whoami/app.yaml"))
+}
+
+resource "kubernetes_manifest" "whoami_scale" {
+  manifest = yamldecode(file("${path.module}/kube/whoami/scale.yaml"))
 }
