@@ -1,0 +1,12 @@
+apiVersion: http.keda.sh/v1alpha1
+kind: HTTPScaledObject
+metadata:
+  name: http-scaling
+  namespace: default
+
+spec:
+  scaleTargetRef:
+    deployment: whoami-app
+    service: whoami-app
+    port: 80
+    targetPendingRequests: "1"
