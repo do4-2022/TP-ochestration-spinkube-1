@@ -9,4 +9,3 @@ spec:
     deployment: whoami-app
     service: whoami-app
     port: 80
-    targetPendingRequests: "1"
