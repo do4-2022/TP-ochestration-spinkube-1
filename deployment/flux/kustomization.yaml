@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - whoami/app.yaml
   - whoami/http-scale.yaml
+  - whoami/ingress.yaml

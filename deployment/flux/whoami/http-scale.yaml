@@ -5,6 +5,11 @@ metadata:
   namespace: default
 
 spec:
+  hosts:
+    - "whoami.example.com"
+  replicas:
+    min: 1
+    max: 10
   scaleTargetRef:
     deployment: whoami-app
     service: whoami-app
