@@ -39,3 +39,25 @@ resource "kubectl_manifest" "spin_operator_shim_executor" {
     kubernetes_manifest.spin_app_executor_crd
   ]
 }
+
+resource "helm_release" "kwasm" {
+  name             = "kwasm-operator"
+  namespace        = "kwasm"
+  create_namespace = true
+  repository       = "http://kwasm.sh/kwasm-operator/"
+  chart            = "kwasm-operator"
+  atomic           = true
+  cleanup_on_fail  = true
+  wait             = true
+  depends_on       = [kubectl_manifest.spin_operator_shim_executor]
+}
+
+resource "null_resource" "annotate_nodes" {
+  triggers = {
+    always_run = "${timestamp()}" // Always run this resource
+  }
+
+  provisioner "local-exec" {
+    command = "kubectl annotate node --all kwasm.sh/kwasm-node=true"
+  }
+}
