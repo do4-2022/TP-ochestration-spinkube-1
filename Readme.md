@@ -2,11 +2,10 @@
 
 ## Deploy
 
-Run terraform to deploy the infrastructure
 ```bash
 cd deployment/terraform
 terraform init
-terraform apply
+terraform apply -auto-approve
 ```
 
-Then flux will deploy the kubernetes resources
+Then wait a bit for the cluster to be ready and for flux to deploy the applications.

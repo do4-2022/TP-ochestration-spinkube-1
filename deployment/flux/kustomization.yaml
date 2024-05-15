@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - whoami/app.yaml
   - whoami/cpu-scale.yaml
-  - whoami/ingress.yaml
