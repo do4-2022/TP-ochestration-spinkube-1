@@ -17,7 +17,7 @@ resource "helm_release" "this" {
 
   set {
     name  = "gitRepository.spec.interval"
-    value = "5m"
+    value = "1m"
   }
 
   set {

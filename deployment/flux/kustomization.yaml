@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
   - whoami/app.yaml
   - whoami/http-scale.yaml
+  - whoami/ingress.yaml
+  - metallb/ip-pool.yaml
+  - metallb/l2-advertisement.yaml
