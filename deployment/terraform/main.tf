@@ -40,14 +40,3 @@ resource "helm_release" "cert-manager" {
     value = "true"
   }
 }
-
-# resource "helm_release" "traefik" {
-#   name       = "traefik"
-#   repository = "https://traefik.github.io/charts"
-#   chart      = "traefik"
-#   namespace  = "default"
-# }
-
-resource "kubernetes_manifest" "spin_app_ingress" {
-  manifest = yamldecode(file("${path.module}/kube/network/ingress.yaml"))
-}
