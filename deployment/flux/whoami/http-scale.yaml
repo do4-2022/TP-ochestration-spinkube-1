@@ -8,7 +8,7 @@ spec:
   hosts:
     - "whoami.example.com"
   replicas:
-    min: 1
+    min: 0
     max: 10
   scaleTargetRef:
     deployment: whoami-app
