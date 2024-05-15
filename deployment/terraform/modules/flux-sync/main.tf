@@ -28,7 +28,7 @@ resource "helm_release" "this" {
   ## Kustomization Repository
   set {
     name  = "kustomization.spec.interval"
-    value = "5m"
+    value = "1m"
   }
 
   set {

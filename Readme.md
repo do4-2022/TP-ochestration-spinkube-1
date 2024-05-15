@@ -9,7 +9,4 @@ terraform init
 terraform apply
 ```
 
-```bash
-cd ../flux
-kubectl apply -k .
-```
+Then flux will deploy the kubernetes resources
