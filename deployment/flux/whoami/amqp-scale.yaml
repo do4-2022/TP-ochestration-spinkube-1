@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: keda-rabbitmq-secret
+data:
+  host: YW1xcDovL3VzZXI6cGFzc3dvcmRAcmFiYml0bXE6NTY3Mi92aG9zdA== # base64 encoded value of format amqp://user:password@localhost:5672/vhost
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth-rabbitmq-conn
+  namespace: default
+spec:
+  secretTargetRef:
+    - parameter: host
+      name: keda-rabbitmq-secret
+      key: host
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rabbitmq-scaledobject
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: rabbitmq-deployment
+  triggers:
+  - type: rabbitmq
+    metadata:
+      protocol: amqp
+      queueName: testqueue
+      mode: QueueLength
+      value: "5"
+    authenticationRef:
+      name: keda-trigger-auth-rabbitmq-conn
