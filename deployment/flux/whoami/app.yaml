@@ -1,11 +1,19 @@
-kind: SpinApp
 apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
 metadata:
-  name: variable-explorer
+  name: whoami-app
+  namespace: default
 spec:
-  replicas: 1
   image: index.docker.io/sautax/variable-explorer:v1
   executor: containerd-shim-spin
+  enableAutoscaling: true
+  resources:
+    limits:
+      cpu: 500m
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 400Mi
   variables:
     - name: pod_name
       valueFrom:

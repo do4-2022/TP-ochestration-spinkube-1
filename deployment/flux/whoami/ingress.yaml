@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami-app
+  namespace: keda
+
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: whoami.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keda-add-ons-http-interceptor-proxy
+                port:
+                  number: 8080
