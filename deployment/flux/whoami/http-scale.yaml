@@ -3,24 +3,20 @@ kind: HTTPScaledObject
 metadata:
   name: http-scaling
   namespace: default
-
 spec:
   hosts:
-    - "whoami.example.com"
+    - whoami.example.com
   replicas:
     min: 0
     max: 10
   scaleTargetRef:
-    deployment: whoami-app
+    kind: Deployment
+    name: whoami-app
     service: whoami-app
     port: 80
   scaledownPeriod: 1
   scalingMetric:
-    concurrency:
-      targetValue: 100
     requestRate:
       granularity: 1s                
       targetValue: 10 # default 100
       window: 10s # default: 1m
-
-
