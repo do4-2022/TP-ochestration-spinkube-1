@@ -13,7 +13,7 @@ spec:
     kind: Deployment
     name: whoami-app
     service: whoami-app
-    port: 8080
+    port: 80
   scaledownPeriod: 1
   scalingMetric:
     requestRate:
