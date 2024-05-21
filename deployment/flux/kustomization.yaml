@@ -9,3 +9,4 @@ resources:
   - metallb/l2-advertisement.yaml
   - queued-whoami/app.yaml
   - queued-whoami/amqp-scale.yaml
+  - spin/spin-shim-executor.yaml

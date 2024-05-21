@@ -1,6 +1,6 @@
 module "flux-bootstrap" {
   source     = "./modules/flux-bootstrap"
-  depends_on = [kubectl_manifest.spin_operator_shim_executor, helm_release.keda]
+  depends_on = [helm_release.keda]
 }
 
 module "flux-sync" {
