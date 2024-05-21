@@ -22,7 +22,7 @@ resource "helm_release" "this" {
 
   set {
     name  = "gitRepository.spec.ref.branch"
-    value = "feat/simon" #TODO: Change to main
+    value = "main" 
   }
 
   ## Kustomization Repository
